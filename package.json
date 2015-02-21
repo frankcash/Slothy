@@ -1,0 +1,41 @@
+{
+  "name": "GetSomeSleep",
+  "version": "0.0.3",
+  "contributors": [
+      {
+      "name": "Frank Cash",
+      "email": "cashc@acm.org"
+      }
+    ],
+      "scripts": {
+        "test" : "mocha"
+      },
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/frankcash/GetSomeSleep.git"
+      },
+      "bugs": {
+        "url": "https://github.com/frankcash/GetSomeSleep/issues"
+      },
+      "keywords": [
+
+      ],
+      "dependencies": {
+        "express": "3.x.x",
+        "mongoose" : "3.8.23",
+        "express-session": "~1.0.0",
+        "body-parser": "~1.0.0",
+        "cookie-parser": "~1.0.0",
+        "q":"*",
+        "fitbit" : "*"
+
+      },
+      "devDependencies": {
+        "mocha" : "*",
+        "chai" : "*",
+        "node-mocks-http" : "*",
+        "form-urlencoded" : "*",
+        "mocha-mongoose" : "*"
+      }
+
+    }
