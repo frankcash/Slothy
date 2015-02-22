@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                min-width: 420px;
+                overflow-x: hidden;
+                font-family: Arial, sans-serif;
+                font-size: 12px;
+            }
+            input, textarea {
+                width: 420px;
+            }
+            input#save {
+                font-weight: bold; width: auto;
+            }
+        </style>
+        <script src="popup.js"></script>
+    </head>
+    <body>
+        <form id="addbookmark">
+            <p><label for="title">username</label><br />
+            <input type="text" id="username" name="title" size="50" value="" /></p>
+                <input id="save" type="submit" value="Login" />
+                <span id="status-display"></span>
+            </p>
+        </form>
+    </body>
+</html>
