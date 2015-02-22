@@ -1,10 +1,7 @@
 module.exports= function(app, config, Fitbit){
 
-  app.get('/', function(req,res){
-    res.render('./..public/index.html');
-  })
 
-  app.get('/req', function (req, res) {
+  app.get('/register', function (req, res) {
     // Create an API client and start authentication via OAuth
     var client = new Fitbit(config.CONSUMER_KEY, config.CONSUMER_SECRET);
 
