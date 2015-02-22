@@ -53,6 +53,7 @@ function addBookmark() {
     statusDisplay.innerHTML = 'Saving...';
 }
 
+
 function saveUserInfo(){
   event.preventDefault();
 
@@ -72,7 +73,11 @@ function saveUserInfo(){
       if (xhr.status == 200) {
         // If it was a success, close the popup after a short delay
         statusDisplay.innerHTML = 'Foobar';
-        window.setTimeout(window.close, 1000);
+        console.log(xhr.responseText);
+        console.log("xhr", xhr);
+        // window.setTimeout(window.close, 1000);
+        var test = jQuery.parseJSON(xhr.response)
+        console.log("tesT", test);
       } else {
         // Show what went wrong
         statusDisplay.innerHTML = 'Error saving: ' + xhr.statusText;
@@ -81,7 +86,7 @@ function saveUserInfo(){
   };
 
   xhr.open("GET", getUrl, true);
-  
+
 
   xhr.send();
 
