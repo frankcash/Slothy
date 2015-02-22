@@ -12,8 +12,8 @@ module.exports= function(app, config, Fitbit){
       }
 
       req.session.oauth = {
-        requestToken: token
-        , requestTokenSecret: tokenSecret
+        requestToken: token,
+        requestTokenSecret: tokenSecret
       };
       res.redirect(client.authorizeUrl(token));
     });
@@ -21,9 +21,11 @@ module.exports= function(app, config, Fitbit){
 
   // On return from the authorization
   app.get('/oauth_callback', function (req, res) {
-    var verifier = req.query.oauth_verifier
-    , oauthSettings = req.session.oauth
-    , client = new Fitbit(config.CONSUMER_KEY, config.CONSUMER_SECRET);
+    var verifier = req.query.oauth_verifier,
+    oauthSettings = req.session.oauth,
+    client = new Fitbit(config.CONSUMER_KEY, config.CONSUMER_SECRET);
+    
+    console.log("req: ", req);
 
     // Request an access token
     client.getAccessToken(
