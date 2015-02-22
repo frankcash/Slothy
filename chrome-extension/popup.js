@@ -23,7 +23,7 @@ function saveUserInfo(){
       statusDisplay.innerHTML = '';
       if (xhr.status == 200) {
         // If it was a success, close the popup after a short delay
-        statusDisplay.innerHTML = 'Foobar';
+        statusDisplay.innerHTML = 'success';
         console.log(xhr.responseText);
         console.log("xhr", xhr);
         // window.setTimeout(window.close, 1000);
@@ -59,6 +59,21 @@ function accessUserInfo(){
   chrome.storage.local.get("user", function(data) {
     // Do something with data.key
     console.log("data", data);
+    if(data.user.steps < data.user.goals){
+      $('form').submit(function(e) {
+        e.preventDefault();
+      });
+
+      $('button').prop('disabled', true);
+      $('form').submit(function(e) {
+        return false;
+      });
+      $('button').click(function(e){
+        e.preventDefault()
+        return false;
+      })
+
+    }
   });
 }
 
@@ -72,6 +87,6 @@ window.addEventListener('load', function(evt) {
     // Get the event page
 
     var button = document.getElementById('findSteps');
-
+s
 
 });

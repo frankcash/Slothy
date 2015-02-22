@@ -12,9 +12,9 @@ function accessUserInfo(){
         return false;
       });
       $('button').click(function(e){
+        e.preventDefault()
         return false;
       })
-      $('button[type=submit]').click(function(e) {e.preventDefault();});
 
     }
     console.log("true");
