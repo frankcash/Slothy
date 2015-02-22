@@ -1,8 +1,7 @@
 var User = require("../models/user");
-var log4js = require('log4js');
-var logger = log4js.getLogger();
 
-module.exports= function(app, config, Fitbit){
+
+module.exports= function(app, config, Fitbit, logger){
 
 
   app.get('/register', function (req, res) {
