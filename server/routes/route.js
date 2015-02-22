@@ -1,4 +1,6 @@
 var User = require("../models/user");
+var log4js = require('log4js');
+var logger = log4js.getLogger();
 
 module.exports= function(app, config, Fitbit){
 
@@ -75,6 +77,7 @@ module.exports= function(app, config, Fitbit){
         res.send(err);
       }
       console.log("user", user);
+      logger.debug(user);
 
       client = new Fitbit(
         config.CONSUMER_KEY,
@@ -84,6 +87,7 @@ module.exports= function(app, config, Fitbit){
           unitMeasure: 'en_GB'
         }
       );
+      logger.debug(client);
 
       // Fetch todays activities
       client.getActivities(function (err, activities) {
@@ -91,7 +95,7 @@ module.exports= function(app, config, Fitbit){
 
           res.send(err);
         }
-
+        console.log("activities", activities);
         res.json({steps : activities.steps(), goals: activities._attributes.goals.steps});
       });
 
