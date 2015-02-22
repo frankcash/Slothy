@@ -32,8 +32,16 @@ function saveUserInfo(){
         console.log(xhr.responseText);
         console.log("xhr", xhr);
         // window.setTimeout(window.close, 1000);
-        var test = jQuery.parseJSON(xhr.response)
-        console.log("tesT", test);
+        var data = jQuery.parseJSON(xhr.response)
+        console.log("data", data);
+        chrome.storage.local.set({user: data}, function() {
+          if(chrome.runtime.lastError) {
+            console.error(
+              "Error setting " + user + " to " + JSON.stringify(data) +
+              ": " + chrome.runtime.lastError.message
+            );
+          }
+        });
       } else {
         // Show what went wrong
         statusDisplay.innerHTML = 'Error saving: ' + xhr.statusText;
@@ -51,8 +59,17 @@ function saveUserInfo(){
 
 }
 
+function accessUserInfo(){
+  // Getting
+  chrome.storage.local.get("user", function(data) {
+    // Do something with data.key
+    console.log("data", data);
+  });
+}
+
 // When the popup HTML has loaded
 window.addEventListener('load', function(evt) {
+    accessUserInfo();
     // Cache a reference to the status display SPAN
     statusDisplay = document.getElementById('status-display');
     // Handle the bookmark form submit event with our addBookmark function
