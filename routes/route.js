@@ -24,7 +24,7 @@ module.exports= function(app, config, Fitbit){
     var verifier = req.query.oauth_verifier,
     oauthSettings = req.session.oauth,
     client = new Fitbit(config.CONSUMER_KEY, config.CONSUMER_SECRET);
-    
+
     console.log("req: ", req);
 
     // Request an access token
@@ -42,7 +42,7 @@ module.exports= function(app, config, Fitbit){
         oauthSettings.accessTokenSecret = secret;
         console.log("token: ", token);
         console.log("secret: ", secret);
-        res.redirect('/stats');
+        res.redirect('/#/configure/' + token + '/' + secret);
       }
     );
   })

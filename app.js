@@ -18,7 +18,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-require('./routes/main')(app, config, Fitbit);
+require('./routes/route')(app, config, Fitbit);
 
 console.log("listening on port: 3000");
 app.listen(3000);
