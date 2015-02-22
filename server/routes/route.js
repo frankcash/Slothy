@@ -68,30 +68,37 @@ module.exports= function(app, config, Fitbit){
     );
   })
 
-  // Display some stats
-  app.get('/stats', function (req, res) {
-    client = new Fitbit(
-      config.CONSUMER_KEY,
-      config.CONSUMER_SECRET, { // Now set with access tokens
-        accessToken: req.session.oauth.accessToken,
-        accessTokenSecret: req.session.oauth.accessTokenSecret,
-        unitMeasure: 'en_GB'
+  app.get('/steps/:username', function(req, res){
+
+    User.findOne(req.params.username, function(err,user){
+      if(err){
+        res.send(err);
       }
-    );
+      console.log("user", user);
 
-    // Fetch todays activities
-    client.getActivities(function (err, activities) {
-      if (err) {
+      client = new Fitbit(
+        config.CONSUMER_KEY,
+        config.CONSUMER_SECRET, { // Now set with access tokens
+          accessToken: user.token,
+          accessTokenSecret: user.secret,
+          unitMeasure: 'en_GB'
+        }
+      );
 
-        return;
-      }
-      console.log(activities);
-      var GOAL_STEPS= activities._attributes.goals.steps;
-      console.log(activities._attributes.goals.steps);
+      // Fetch todays activities
+      client.getActivities(function (err, activities) {
+        if (err) {
 
-      // `activities` is a Resource model
-      res.send('Total steps today: ' + activities.steps());
+          res.send(err);
+        }
+
+        res.json({steps : activities.steps(), goals: activities._attributes.goals.steps});
+      });
+
     });
+
   })
+
+
 
 }

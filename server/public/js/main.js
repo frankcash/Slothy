@@ -3,7 +3,7 @@
 
   app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
-    .when('/', {templateUrl: '/home.html',   controller: 'IndexCtrl'})
+    .when('/', {templateUrl: '/home.html', controller: 'IndexCtrl'})
     .when('/configure/:token/:secret', {templateUrl: '/configure.html',   controller: 'ConfigureCtrl'})
     .otherwise({redirectTo: '/'});
   }]);
@@ -36,12 +36,7 @@
           console.log('error');
         })
       }
-
-
     }
-
-
-
 
   }]);
 
