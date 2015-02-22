@@ -1,3 +1,5 @@
+var User = require("../models/user");
+
 module.exports= function(app, config, Fitbit){
 
 
@@ -16,6 +18,25 @@ module.exports= function(app, config, Fitbit){
         requestTokenSecret: tokenSecret
       };
       res.redirect(client.authorizeUrl(token));
+    });
+  })
+
+  app.post('/create_account', function(req, res){
+    console.log("body", req.body );
+    var user = new User({
+      username:req.body.name,
+      token:req.body.token,
+      secret:req.body.secret
+
+    });
+
+    user.save(function(err){
+      if(err){
+        console.log("broken");
+        res.send("500");
+      }
+      console.log("worked");
+      res.send("200");
     });
   })
 

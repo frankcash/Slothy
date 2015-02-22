@@ -1,7 +1,7 @@
 <div ng-controller="ConfigureCtrl">
   <a href="#home">index view</a>
-  <form data-name="Register Form">
-    <input ng-model="accountName" type="text" value="account name">
-    <input type="submit" value="REGISTER" ng-click="register()">
+  <form name="myForm"  class="my-form" ng-submit="submit()">
+    <input name="input" ng-model="userName" required>
+    <input type="submit" id="submit" value="Submit" />
   </form>
 </div>

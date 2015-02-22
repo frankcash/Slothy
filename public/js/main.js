@@ -15,16 +15,32 @@
 
   }]);
 
-  app.controller('ConfigureCtrl', ['$scope', '$route','$routeParams',
-  function($scope, $route, $routeParams){ // http://goo.gl/oa3Kzq
+  app.controller('ConfigureCtrl', ['$scope', '$route','$routeParams', '$http',
+  function($scope, $route, $routeParams, $http){ // http://goo.gl/oa3Kzq
     console.log("route", $route);
     console.log('ConfigureCtrl');
     this.params = $routeParams;
-    console.log("params", this.params);
 
-    $scope.register = function(){
-      console.log($scope.accountName);
+    $scope.submit = function(){
+      this.params = $routeParams;
+      console.log("account name: ", $scope.userName);
+      console.log("params: ", this.params);
+
+
+      // TODO: HTTP POST
+      if ($scope.userName) {
+        $http.post('/create_account', {name: $scope.userName, token: this.params.token, secret: this.params.secret})
+        .success(function(data, status, headers, config) {
+          console.log('success');
+        }).error(function(data, status, headers,config){
+          console.log('error');
+        })
+      }
+
+
     }
+
+
 
 
   }]);
