@@ -3,6 +3,12 @@
     "name": "Slothly",
     "description": "POST details of the current page to a remote endpoint.",
     "version": "0.2",
+    "content_scripts": [
+      {
+        "matches": ["https://*/*"],
+        "js": ["jquery.min.js", "contentRun.js"]
+      }
+    ],
     "background": {
         "scripts": ["event.js"],
         "persistent": false
