@@ -1,5 +1,5 @@
 # Slothy
-Sleep or never post to social media again!
+Workout or never post to social media again!
 
 # About
 Slothy is a chrome extension that connects to the FitBit API and checks your daily goal for steps.  If you haven't achieved your goals you won't be able to post to chrome!
